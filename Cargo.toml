@@ -1,0 +1,6 @@
+[package]
+name = "arc-guard"
+version = "0.1.0"
+authors = ["kunicmarko20 <kunicmarko20@gmail.com>"]
+edition = "2018"
+repository = "https://github.com/kunicmarko20/arc-guard-rs"
