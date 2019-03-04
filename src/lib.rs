@@ -1,20 +1,24 @@
 use std::sync::{Arc, Mutex};
 
-pub struct Guard<T> {
-    inner: Arc<Mutex<T>>,
+pub struct ArcGuard<T> {
+    arc: Arc<Mutex<T>>,
 }
 
-impl<T> Guard<T> {
+impl<T> ArcGuard<T> {
     pub fn new(t: T) -> Self {
-        Guard{inner: Arc::new(Mutex::new(t))}
+        ArcGuard{arc: Arc::new(Mutex::new(t))}
     }
 
-    pub fn execute<F: FnMut(Arc<Mutex<T>>)>(&self, mut callback: F) {
-        callback(self.inner.clone());
+    pub fn execute<R>(&self, mut callback: impl FnMut(Arc<Mutex<T>>) -> R) -> R {
+        callback(self.arc.clone())
+    }
+
+    pub fn arc(&self) -> Arc<Mutex<T>> {
+        self.arc.clone()
     }
 
     pub fn clone(&self) -> Self {
-        Guard{inner: self.inner.clone()}
+        ArcGuard{arc: self.arc.clone()}
     }
 }
 
