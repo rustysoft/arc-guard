@@ -125,7 +125,21 @@ impl<T> ArcGuard<T> {
 
 #[cfg(test)]
 mod tests {
+    use super::ArcGuard;
+    struct Indicator;
+
+    impl Indicator {
+        pub fn new() -> Self {Indicator}
+    }
+
     #[test]
     fn it_works() {
+        let indicator = ArcGuard::new(Indicator::new());
+
+        let string = indicator.execute(|indicator| -> String {
+            String::from("5")
+        });
+
+        assert_eq!(string, "5");
     }
 }
