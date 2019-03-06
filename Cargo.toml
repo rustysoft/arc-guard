@@ -1,8 +1,8 @@
 [package]
 name = "arc-guard"
-description = "Wrapper around Arc<Mutex<T>> that removes boilerplate code."
-version = "0.1.0"
+description = "Guard around Arc<Mutex<T>> allowing you to write less boilerplate code."
+version = "0.2.0"
 license = "MIT"
 authors = ["kunicmarko20 <kunicmarko20@gmail.com>"]
 edition = "2018"
-repository = "https://github.com/kunicmarko20/arc-guard-rs"
+repository = "https://github.com/rustysoft/arc-guard"
